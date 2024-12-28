@@ -1,0 +1,11 @@
+﻿@page "/add_composition"
+
+
+<EditForm Model="Track">
+	<InputText @bind-Value="Track.Name" />
+	<InputNumber @bind-Value="Track.Duration" />
+</EditForm>
+
+@code {
+	Composition Track { get; set; } = new();
+}

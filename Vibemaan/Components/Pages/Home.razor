@@ -1,0 +1,36 @@
+﻿@page "/"
+@inject IDataService data
+@inject NavigationManager navigate
+
+<PageTitle>Music</PageTitle>
+
+<h1>Compositions: </h1>
+@if(tracks == null)
+{
+    <tr><td>Loading...</td></tr>
+}
+else{
+    <div class="btn-group m-2">
+        <button class="btn btn-primary" @onclick="AddComposition">Add Composition</button>
+    </div>
+    @foreach(var t in tracks)
+    {
+	    <p>@t.Name</p>
+        <p>@t.Duration seconds</p>
+    }
+}
+@code {
+    IEnumerable<Composition>? tracks;
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        tracks = data.GetItems();
+    }
+
+    public void AddComposition()
+    {
+        navigate.NavigateTo("/add_composition/");
+    }
+}
+
+<h1>Playlists: </h1>
