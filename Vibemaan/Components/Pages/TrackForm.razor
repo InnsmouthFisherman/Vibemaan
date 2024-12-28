@@ -1,11 +1,29 @@
 ﻿@page "/add_composition"
 
+@inject IDataService data
+@inject NavigationManager navigate
 
-<EditForm Model="Track">
+<EditForm Model="Track" FormName="TaskForm" OnValidSubmit="ValidSubmit">
+	<DataAnnotationsValidator/>
+	<ValidationSummary/>
+
+	<h2>New composition</h2>
+	<InputNumber @bind-Value="Track.Id" hidden />
 	<InputText @bind-Value="Track.Name" />
 	<InputNumber @bind-Value="Track.Duration" />
+
+	<button class="btn btn-primary m-2" type="submit">Save</button>
+	<a class="btn btn-primary m-2" href="/">Cancel</a>
+
 </EditForm>
 
 @code {
+	[SupplyParameterFromForm]
 	Composition Track { get; set; } = new();
+
+	async Task ValidSubmit()
+	{
+		await data.SaveAsync(Track!);
+		navigate.NavigateTo("/");
+	}
 }

@@ -29,8 +29,17 @@ else{
 
     public void AddComposition()
     {
-        navigate.NavigateTo("/add_composition/");
+        navigate.NavigateTo("/add_composition");
+    }
+
+    public void AddPlaylist()
+    {
+        navigate.NavigateTo("/add_playlist");
     }
 }
 
 <h1>Playlists: </h1>
+
+<div class="btn-group m-2">
+    <button class="btn btn-primary" @onclick="AddPlaylist">Add Playlist</button>
+</div>

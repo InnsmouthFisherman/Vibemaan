@@ -15,5 +15,10 @@ namespace Vibemaan.Data
         {
             return items;
         }
+
+        public Task SaveAsync(Composition comp)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

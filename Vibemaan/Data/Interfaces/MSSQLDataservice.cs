@@ -9,5 +9,11 @@ namespace Vibemaan.Data.Interfaces
         {
             return context.Compositions.ToArray();
         }
+
+        public async Task SaveAsync(Composition comp)
+        {
+            await context.Compositions.AddAsync(comp);
+            await context.SaveChangesAsync();
+        }
     }
 }
